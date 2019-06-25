@@ -1,0 +1,4 @@
+#读取配置
+spring:
+    profiles:
+        active: dev #环境 prod 上线环境 ; dev 测试环境

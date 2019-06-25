@@ -1,0 +1,103 @@
+spring:
+  #数据源配置
+  datasource:
+    url: jdbc:mysql://60.205.179.26:3306/kindin?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: kindintest
+    password: oSk&ksDka$mW#dcmB
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 下面为连接池的补充设置，应用到上面所有数据源中
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall
+      use-global-data-source-stat: true
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    connectionProperties: druid.stat.mergeSql=true
+  redis:
+    host: 60.205.179.26
+    port: 6379
+    password: kindintest
+    timeout: 10000ms
+    database: 1
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1s
+        max-idle: 8
+        min-idle: 0
+  thymeleaf:
+    # 是否启用模板缓存。
+    cache: true
+    # 是否检查模板位置是否存在。
+    check-template: true
+    # 是否为Web框架启用Thymeleaf视图分辨率。
+    enabled: true
+    # 编码格式, 默认UTF-8
+    encoding: UTF-8
+    # 应用于模板的模板模式。另请参阅Thymeleaf的TemplateMode枚举。
+    mode: HTML
+    # 后缀 默认 .html
+    suffix: .html
+    # 模板文件存放位置  , 默认 classpath:/templates/
+    prefix: classpath:/templates/
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  #对返回前端的时间格式做全局配置
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+mybatis:
+  #实体类所做包别名设置
+  type-aliases-package: com.kindin.supplier.sys.bean,com.kindin.supplier.common.bean,com.kindin.sys.compact.bean,com.kindin.sys.order.bean,com.kindin.sys.product.bean,com.kindin.sys.supplier.bean,com.kindin.manager.sys.bean,com.kindin.sys.distributor.bean
+  #mapper.xml所在位置-这里打包问题，目前在这个目录
+  mapper-locations: classpath:com/kindin/*/*/mapper/*.xml
+
+
+logging: #配置日志,不同目录下的日志可配置不同级别
+  level:
+    com.kindin.supplier.sys.mapper: debug
+    com.kindin.sys.product.mapper: debug
+    com.kindin.sys.common.mapper: debug
+    com.kindin.sys.compact.mapper: debug
+    com.kindin.sys.distributor.mapper: debug
+    com.kindin.sys.order.mapper: debug
+    com.kindin.sys.supplier.mapper: debug
+    org.springfromework.web: info
+#分页插件
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+#指定日志输出的文件目录
+logback:
+  loghome: /data/tomcatlogs/manager/supplier
+
+server:
+  port: 8089

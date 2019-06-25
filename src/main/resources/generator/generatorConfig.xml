@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <properties resource="generator/mbg_jdbc.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="${mapper.plugin}">
+            <property name="mappers" value="${mapper.Mapper}"/>
+        </plugin>
+
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.user}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+        <!-- 生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="${targetPackageModel}" targetProject="${targetProject}"/>
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="${targetPackageMapperXml}" targetProject="${targetProject}"/>
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator targetPackage="${targetPackageMapper}" targetProject="${targetProject}" type="XMLMAPPER"/>
+
+<!--        <table schema="nloveu" tableName="app_member"></table>
+        <table schema="nloveu" tableName="product_base_info"></table>
+        <table schema="nloveu" tableName="product_packet_info"></table>
+        <table schema="nloveu" tableName="shopping_tbl"></table>
+        <table schema="nloveu" tableName="shopping_order_tbl"></table>
+        <table schema="nloveu" tableName="order_base_info"></table>
+        <table schema="nloveu" tableName="order_sub_info"></table>
+        <table schema="nloveu" tableName="order_visitor_info"></table>
+        <table schema="nloveu" tableName="member_coupon"></table>
+        <table schema="nloveu" tableName="activity_info"></table>
+        <table schema="nloveu" tableName="full_range"></table>
+        <table schema="nloveu" tableName="member_red_envelope"></table>
+        <table schema="nloveu" tableName="distributor_product_info"></table>
+        <table schema="nloveu" tableName="member_msxf_token"></table>
+        <table schema="nloveu" tableName="activity_range"></table>
+        <table schema="nloveu" tableName="bank_info"></table>
+        <table schema="nloveu" tableName="cash_info"></table>
+        <table schema="nloveu" tableName="s_city"></table>
+        <table schema="nloveu" tableName="product_theme_category"></table>
+        <table schema="nloveu" tableName="product_theme_info"></table>
+        <table schema="nloveu" tableName="product_hotel_info"></table>
+        <table schema="nloveu" tableName="member_browse_history"></table>
+        <table schema="nloveu" tableName="product_ticket_info"></table>
+        <table schema="nloveu" tableName="hot_words_category"></table>
+        <table schema="nloveu" tableName="product_date"></table>-->
+
+
+    </context>
+</generatorConfiguration>
