@@ -18,7 +18,7 @@
         <java.version>1.8</java.version>
         <commons.lang3.version>3.4</commons.lang3.version>
         <org.apache.httpcomponents.httpcore>4.4.10</org.apache.httpcomponents.httpcore>
-        <org.apache.httpcomponents.httpclient>4.5.5</org.apache.httpcomponents.httpclient>
+        <org.apache.httpcomponents.httpclient>4.5.13</org.apache.httpcomponents.httpclient>
         <druid>1.0.18</druid>
     </properties>
 
@@ -179,7 +179,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.2</version>
+            <version>4.5.13</version>
         </dependency>
 
         <dependency>
